@@ -74,7 +74,7 @@ class ProtoText(object):
     @property
     def temp_file(self):
         self._tmp_file.seek(0)
-        self._tmp_file.write(str(self._parameter))
+        self._tmp_file.write(str(self._pb_obj))
         self._tmp_file.flush()
         return self._tmp_file
 
