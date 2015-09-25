@@ -19,13 +19,14 @@ def dict__contains__(self, item):
 
 def dict__getitem__(self, key):
     if key in self:
-        return self.__getattribute__(key)
+        return getattr(self, key)
     raise KeyError(key)
 
 
 def dict__setitem__(self, key, value):
     if key in self:
-        self.__setattr__(key, value)
+        setattr(self, key, value)
+        return
     raise KeyError(key)
 
 
