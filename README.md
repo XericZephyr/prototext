@@ -44,8 +44,9 @@ assume `person_obj` to be some protobuf message
  ```
  print person_obj['name']       # print out the person_obj.name 
  person_obj['name'] = 'David'   # set the attribute 'name' to 'David'
- person_obj.update({'name': 'David'})   # again set the attribute 'name' to 'David' but in batch mode
- print ('name' in person_obj)   # print whether the 'name' attribute is set in person_obj
+ # again set the attribute 'name' to 'David' but in batch mode
+ person_obj.update({'name': 'David'})
+ print ('name' in person_obj)  # print whether the 'name' attribute is set in person_obj 
  # the 'in' operator is better than the google implementation HasField function 
  # in the sense that it won't raise Exception even if the field is not defined  
  ```
@@ -60,8 +61,8 @@ person_obj['phone'] = [{'number': '5678'}]                   # dict assignment
 person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")] # mixed assignment
 ```
 
--However, at present, the implementation for the list assignment feature is ugly, unsafe and inefficient.-
-You didn't see anything in the above line. 
+~~However, at present, the implementation for the list assignment feature is ugly, unsafe and inefficient.~~
+*You didn't see anything in the above line.* 
  
 #### Text Method
  
@@ -77,7 +78,7 @@ You didn't see anything in the above line.
  ```
 
  
- #### More Examples
+#### More Examples
  
  If you're still interested in our project, we suggest you reading our unit-test code in 
  [tests/](https://github.com/XericZephyr/prototext/tree/master/tests) folder which is intensively 
