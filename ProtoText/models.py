@@ -5,6 +5,7 @@ from google.protobuf.message import Message
 import types
 import tempfile
 import os.path
+from UserDict import UserDict
 
 
 #
@@ -18,24 +19,85 @@ def dict__contains__(self, item):
 
 
 def dict__getitem__(self, key):
-    if key in self:
-        return getattr(self, key)
-    raise KeyError(key)
+    return getattr(self, key)
 
 
 def dict__setitem__(self, key, value):
-    if key in self:
+    if isinstance(value, list):
+        # TODO: Check if it's a repeated message field,
+        # if so, allow user to pass dict list
+        del self[key]
+        getattr(self, key).extend(value)
+    else:
         setattr(self, key, value)
-        return
-    raise KeyError(key)
 
 
 def dict__delitem__(self, key):
     self.ClearField(key)
 
 
-class ProtoText(object):
+#
+#   TODO:
+#       1. Add update function
+#       2. Add iter serious function [But not very useful]
+#       3. [Difficult] Try to override the __init__ function in Message
+#
 
+
+MESSAGE_DICT_METHODS = {
+    '__getitem__': dict__getitem__,
+    '__setitem__': dict__setitem__,
+    '__delitem__': dict__delitem__,
+    '__contains__': dict__contains__
+}
+
+
+def append_dict_methods(message_class):
+    for (method_name, method_pointer) in MESSAGE_DICT_METHODS.iteritems():
+        if not hasattr(message_class, method_name):
+            setattr(message_class, method_name, method_pointer)
+
+
+#
+#   Text Format Functions
+#
+
+def message_ParseFromText(self, proto_text_string):
+    self.Clear()
+    return Merge(proto_text_string, self)
+
+
+def message_MergeFromText(self, proto_text_string):
+    return Merge(proto_text_string, self)
+
+
+def message_SerializeToText(self):
+    return str(self)
+
+
+MESSAGE_TEXT_METHODS = {
+    'ParseFromText': message_ParseFromText,
+    'MergeFromText': message_MergeFromText,
+    'SerializeToText': message_SerializeToText
+}
+
+
+def append_text_methods(message_class):
+    for (method_name, method_pointer) in MESSAGE_TEXT_METHODS.iteritems():
+        if not hasattr(message_class, method_name):
+            setattr(message_class, method_name, method_pointer)
+
+
+def global_module_init():
+    append_dict_methods(Message)
+    append_text_methods(Message)
+
+"""
+    Deprecated Code
+"""
+
+
+class ProtoText(object):
     MESSAGE_DICT_METHODS = {
         '__getitem__': dict__getitem__,
         '__setitem__': dict__setitem__,
