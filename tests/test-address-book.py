@@ -22,13 +22,25 @@ class TestProtoText(unittest.TestCase):
 
     def test_dict_method(self):
         person_obj = Person(id=28)
+        self.assertEqual(person_obj['id'], 28)
         # test __setitem__ for naive field
         person_obj['name'] = 'Nancy'
         # test __getitem__ for naive field
         self.assertEqual(person_obj['name'], 'Nancy')
-        # test __setitem__ for repeated field
+        # test __setitem__ for naive repeated field set
         person_obj['phone'] = [Person.PhoneNumber(number="1234")]
-        print person_obj
-        person_obj['phone'] = [Person.PhoneNumber(number="4567"), Person.PhoneNumber(number="1234")]
-        print person_obj
-        # print person_obj['phone']
+        self.assertEqual(person_obj['phone'][0]['number'], "1234")
+        # test __setitem__ for dict input repeated field set
+        person_obj['phone'] = [{'number': 'dict123456'}]
+        self.assertEqual(person_obj['phone'][0]['number'], "dict123456")
+        # test __setitem__ for mixture input repeated field set
+        person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")]
+        self.assertEqual(person_obj['phone'][0]['number'], '4567')
+        self.assertEqual(person_obj['phone'][1]['number'], '1234')
+        # test update function
+        person_obj.update({
+            'name': 'Brown',
+            'id': 15
+        })
+        self.assertEqual(person_obj['name'], 'Brown')
+        self.assertEqual(person_obj['id'], 15)

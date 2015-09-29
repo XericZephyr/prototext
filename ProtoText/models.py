@@ -5,7 +5,6 @@ from google.protobuf.message import Message
 import types
 import tempfile
 import os.path
-from UserDict import UserDict
 
 
 #
@@ -23,11 +22,22 @@ def dict__getitem__(self, key):
 
 
 def dict__setitem__(self, key, value):
-    if isinstance(value, list):
-        # TODO: Check if it's a repeated message field,
-        # if so, allow user to pass dict list
+    if isinstance(value, list) or isinstance(value, types.GeneratorType):
+        # set repeated non-message/message field
         del self[key]
-        getattr(self, key).extend(value)
+        # this algorithm is inefficient, but allow the mixture of dict and Message in list
+        f = getattr(self, key)
+        for v in value:
+            if isinstance(v, dict):
+                f.add().update(v)
+            elif issubclass(v.__class__, Message):
+                f.add().CopyFrom(v)
+            else:
+                f.append(v)
+    elif isinstance(value, dict):
+        # set singular message field
+        del self[key]
+        self.update(value)
     else:
         setattr(self, key, value)
 
@@ -35,6 +45,11 @@ def dict__setitem__(self, key, value):
 def dict__delitem__(self, key):
     self.ClearField(key)
 
+
+def dict_update(self, reference_dict):
+    assert isinstance(reference_dict, dict), "Argument must be Python dictionary."
+    for k, v in reference_dict.iteritems():
+        self[k] = v
 
 #
 #   TODO:
@@ -48,7 +63,8 @@ MESSAGE_DICT_METHODS = {
     '__getitem__': dict__getitem__,
     '__setitem__': dict__setitem__,
     '__delitem__': dict__delitem__,
-    '__contains__': dict__contains__
+    '__contains__': dict__contains__,
+    'update': dict_update
 }
 
 
@@ -91,6 +107,7 @@ def append_text_methods(message_class):
 def global_module_init():
     append_dict_methods(Message)
     append_text_methods(Message)
+
 
 """
     Deprecated Code
