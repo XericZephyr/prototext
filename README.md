@@ -13,13 +13,12 @@ first.**
 
 ### Installation 
 
-Simply install the package from `pip` manager. 
+The newest release version is `0.2.5`. Simply install the package from `pip` manager. 
 
 ```bash
-pip install git+https://github.com/XericZephyr/prototext.git
+pip install https://github.com/XericZephyr/prototext/archive/v0.2.5.tar.gz
 ```
 
-Sorry the installation process is currently very slow due to the installation through `git`. 
 We will publish this module to PyPI very soon when we consider this module as stable. 
 
 ### Usage 
@@ -41,7 +40,7 @@ import our ProtoText module to evilly hack the protobuf module.
 We wrap all the protobuf message with dict-like indexing and updating, i.e.
  
 assume `person_obj` to be some protobuf message
- ```
+ ```python
  print person_obj['name']       # print out the person_obj.name 
  person_obj['name'] = 'David'   # set the attribute 'name' to 'David'
  # again set the attribute 'name' to 'David' but in batch mode
@@ -73,8 +72,8 @@ person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")] # 
  We append a pair of text-format method to the protobuf objects, which are 
  ```python
  adr_book_obj = AddressBook()
- adr_book_obj.ParseFromText(adr_book_text)
- print adr_book_obj.adr_book_obj.SerializeToText()
+ adr_book_obj.ParseFromText(adr_book_text)  # parse text format protobuf from adr_book_text
+ print adr_book_obj.SerializeToText()       # print out the text format protobuf
  ```
 
  
