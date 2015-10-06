@@ -40,6 +40,10 @@ class TestProtoText(unittest.TestCase):
         person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")]
         self.assertEqual(person_obj['phone'][0]['number'], '4567')
         self.assertEqual(person_obj['phone'][1]['number'], '1234')
+        # test __contains__ for naive field
+        self.assertTrue('name' in person_obj)
+        # test __contains__ for repeated field
+        self.assertTrue('phone' in person_obj)
         # test update function
         person_obj.update({
             'name': 'Brown',

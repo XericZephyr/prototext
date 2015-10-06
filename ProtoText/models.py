@@ -19,7 +19,7 @@ class MessageWrapper(Message):
     #
     def __contains__(self, item):
         try:
-            return self.HasField(item)
+            return item in [x.name for x, y in self.ListFields()]
         except ValueError:
             return False
 
