@@ -82,8 +82,10 @@ person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")] # 
  We append a pair of text-format method to the protobuf objects, which are 
  ```python
  adr_book_obj = AddressBook()
- adr_book_obj.ParseFromText(adr_book_text)  # parse text format protobuf from adr_book_text
- print adr_book_obj.SerializeToText()       # print out the text format protobuf
+ adr_book_obj.MergeFromText(adr_book_text)  # merge text format protobuf to adr_book_text
+ adr_book_obj.ParseFromText(adr_book_text)  
+ # clear the content of adr_book_obj first and then merge from the text format protobuf
+ print adr_book_obj.SerializeToText()       # print out the text format protobuf from object
  ```
 
  
