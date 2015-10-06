@@ -1,10 +1,11 @@
-__author__ = 'zhengxu'
-
+from ProtoText import __version__
 from setuptools import setup, find_packages
+
+__author__ = 'zhengxu'
 
 setup(
     name="ProtoText",
-    version="0.3.0",
+    version=__version__,
     packages=find_packages(exclude=['tests']),
 
     # Project uses reStructuredText, so ensure that the docutils get

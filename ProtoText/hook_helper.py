@@ -5,6 +5,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+"""
+    TODO List:
+        - Write a HookHelper class
+        - Save the hook information and do safely removing
+"""
+
 
 def register_class_hook(cls, strategy='safe', skip_buildin=True):
     """
@@ -22,13 +28,31 @@ def register_class_hook(cls, strategy='safe', skip_buildin=True):
                         (base_class.__name__, cls.__name__))
             continue
         for x in cls.__dict__:
-            if not (x in base_class.__dict__) or not (strategy == 'safe'):
+            if not (x in base_class.__dict__ and strategy == 'safe'):
                 # instance method
                 if isinstance(cls.__dict__[x], (types.FunctionType, classmethod, staticmethod, property)):
                     logger.debug("Wrapping [%s] %s" % (x, str(cls.__dict__[x])))
                     setattr(base_class, x, cls.__dict__[x])
-                else:
-                    logger.debug("Skip wrapping [%s] %s" % (x, str(cls.__dict__[x])))
+            else:
+                logger.debug("Skip wrapping [%s] %s for security consideration" % (x, str(cls.__dict__[x])))
+
+
+def deregister_class_hook(cls):
+    """
+    :param cls:  the class object of the class to unhook
+    :return:
+    """
+    assert isinstance(cls, (type, types.ClassType)), \
+        "The input object must be a class object"
+    base_classes = cls.__bases__
+    for base_class in base_classes:
+        for x in cls.__dict__:
+            if x in base_class.__dict__:
+                # instance method
+                if cls.__dict__[x] == base_class.__dict__[x] and \
+                        isinstance(cls.__dict__[x], (types.FunctionType, classmethod, staticmethod, property)):
+                    logger.debug("Remove warping [%s] %s" % (x, str(cls.__dict__[x])))
+                    delattr(base_class, x)
 
 
 def register_module_hook(class_name_list=[], allow_recursive=False, **kwargs):

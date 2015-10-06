@@ -7,9 +7,8 @@ __author__ = 'zhengxu'
 
 """
     TODO:
-        1. Fix bugs in 'in' operator for repeated field
-        2. Add iter serious function [But not very useful]
-        3. [Difficult] Try to override the __init__ function in Message
+        - Add iter serious function [But not very useful]
+        - [Difficult] Try to override the __init__ function in Message
 """
 
 

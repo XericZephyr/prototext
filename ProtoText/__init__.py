@@ -2,7 +2,7 @@ from .models import MessageWrapper
 from .hook_helper import register_class_hook
 
 __author__ = 'zhengxu'
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 try:
     from google.protobuf.message import Message

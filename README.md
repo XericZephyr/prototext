@@ -3,7 +3,11 @@ ProtoText is a powerful python dict-like wrapper class to process google protobu
 
 
 ## What's new?
-
+    
+ * Version 0.3.1
+    - Fix the bug for 'in' operator for repeated field 
+    - 
+    
  * Version 0.3.0
     - We've adopted a new hook engine which can enable the potential for undoing the hack from ProtoText. 
 
