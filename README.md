@@ -6,7 +6,7 @@ ProtoText is a powerful python dict-like wrapper class to process google protobu
     
  * Version 0.3.1
     - Fix the bug for 'in' operator for repeated field 
-    - 
+    - Several known bugs left ... :P
     
  * Version 0.3.0
     - We've adopted a new hook engine which can enable the potential for undoing the hack from ProtoText. 
