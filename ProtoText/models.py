@@ -54,7 +54,7 @@ class MessageWrapper(Message):
             self[k] = v
 
     #
-    #   Text Format Functions
+    #   Text Format Methods
     #
     def ParseFromText(self, proto_text_string):
         self.Clear()

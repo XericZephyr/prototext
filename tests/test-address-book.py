@@ -23,6 +23,7 @@ class TestProtoText(unittest.TestCase):
         adr_book_obj.ParseFromText(adr_book_text)
         self.assertEqual(str(adr_book_obj), adr_book_obj.SerializeToText())
 
+    # TODO: Split this method to several to make code clearer
     def test_dict_method(self):
         person_obj = Person(id=28)
         self.assertEqual(person_obj['id'], 28)
@@ -49,5 +50,17 @@ class TestProtoText(unittest.TestCase):
             'name': 'Brown',
             'id': 15
         })
+        self.assertEqual(person_obj['name'], 'Brown')
+        self.assertEqual(person_obj['id'], 15)
+
+        from ProtoText import prototext_unhook, prototext_hook
+        prototext_unhook()
+        self.assertRaises(TypeError, lambda x: 'phone' in person_obj)
+        prototext_hook()
+        # test unhook again to ensure the clean unhook
+        prototext_unhook()
+        self.assertRaises(TypeError, lambda x: 'phone' in person_obj)
+        prototext_hook()
+
         self.assertEqual(person_obj['name'], 'Brown')
         self.assertEqual(person_obj['id'], 15)

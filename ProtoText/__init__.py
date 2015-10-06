@@ -1,8 +1,8 @@
 from .models import MessageWrapper
-from .hook_helper import register_class_hook
+from .hook_helper import register_class_hook, ClassHookHelper
 
 __author__ = 'zhengxu'
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 try:
     from google.protobuf.message import Message
@@ -14,4 +14,20 @@ except:
 #
 #   Hook Message class by MessageWrapper
 #
-register_class_hook(MessageWrapper)
+MESSAGE_WRAPPER_CLASS = [MessageWrapper]
+HOOK_HELPER_CLASS = []
+
+
+def prototext_hook():
+    global HOOK_HELPER_CLASS
+    HOOK_HELPER_CLASS = [ClassHookHelper(x) for x in MESSAGE_WRAPPER_CLASS]
+    for hhc in HOOK_HELPER_CLASS:
+        hhc.hook()
+
+
+def prototext_unhook():
+    for hhc in HOOK_HELPER_CLASS:
+        hhc.unhook()
+
+
+prototext_hook()
