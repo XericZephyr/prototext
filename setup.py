@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="ProtoText",
-    version="0.2.5",
+    version="0.3.0",
     packages=find_packages(exclude=['tests']),
 
     # Project uses reStructuredText, so ensure that the docutils get

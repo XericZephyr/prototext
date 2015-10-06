@@ -2,6 +2,11 @@
 ProtoText is a powerful python dict-like wrapper class to process google protobuf objects. 
 
 
+## What's new?
+
+ *Version 0.3.0:
+    - We've adopted a new hook engine which can enable the potential for undoing the hack from ProtoText. 
+
 ## How to use? 
 
 This module is written to hack the [google protobuf](https://developers.google.com/protocol-buffers/) 
@@ -28,12 +33,12 @@ We will publish this module to PyPI very soon when we consider this module as st
 Once you have successfully installed the ProtoText module, simply 
 import our ProtoText module to evilly hack the protobuf module.
  
- ```python
- import ProtoText
- ```
+```python
+import ProtoText
+```
  
- You don't need to anything after that. The hack will be completed automatically and 
- **currently cannot be reversed in a python session**!
+You don't need to anything after that. The hack will be completed automatically and
+**currently cannot be reversed in a python session**!
 
 #### Dict-Like Operations
  

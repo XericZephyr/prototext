@@ -1,5 +1,8 @@
 import os
 import unittest
+import sys
+import logging
+logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
 
 try:
     from addressbook_pb2 import AddressBook, Person
