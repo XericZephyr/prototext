@@ -4,7 +4,7 @@ ProtoText is a powerful python dict-like wrapper class to process google protobu
 
 ## What's new?
 
- *Version 0.3.0:
+ * Version 0.3.0
     - We've adopted a new hook engine which can enable the potential for undoing the hack from ProtoText. 
 
 ## How to use? 
@@ -18,10 +18,10 @@ first.**
 
 ### Installation 
 
-The newest release version is `0.2.5`. Simply install the package from `pip` manager. 
+The newest release version is `0.3.0`. Simply install the package from `pip` manager. 
 
 ```bash
-pip install https://github.com/XericZephyr/prototext/archive/v0.2.5.tar.gz
+pip install https://github.com/XericZephyr/prototext/archive/v0.3.0.tar.gz
 ```
 
 We will publish this module to PyPI very soon when we consider this module as stable. 
