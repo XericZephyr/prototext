@@ -3,13 +3,19 @@ ProtoText is a powerful python dict-like wrapper class to process google protobu
 
 
 ## What's new?
+
+ * Version 0.3.2
+    - Improved hook engine. Now it can do safely unhook.
+    - Several more TODO item generated. 
+    - Add some more test cases to tests
     
  * Version 0.3.1
     - Fix the bug for 'in' operator for repeated field 
     - Several known bugs left ... :P
     
  * Version 0.3.0
-    - We've adopted a new hook engine which can enable the potential for undoing the hack from ProtoText. 
+    - We've adopted a new hook engine which can enable the 
+    potential for undoing the hack from ProtoText. 
 
 ## How to use? 
 
@@ -22,17 +28,18 @@ first.**
 
 ### Installation 
 
-The newest release version is `0.3.0`. Simply install the package from `pip` manager. 
+The newest release version is `0.3.0` even though we have some unstable development version ahead of that. 
+To install the package, simply use the `pip` manager:
 
 ```bash
 pip install https://github.com/XericZephyr/prototext/archive/v0.3.0.tar.gz
 ```
 
-We will publish this module to PyPI very soon when we consider this module as stable. 
+We will publish this module to PyPI as soon as we consider this module as stable. 
 
 ### Usage 
 
-**This is the fun part!**
+**This is the fun part!** :shipit:
 
 Once you have successfully installed the ProtoText module, simply 
 import our ProtoText module to evilly hack the protobuf module.
@@ -42,13 +49,23 @@ import ProtoText
 ```
  
 You don't need to anything after that. The hack will be completed automatically and
-**currently cannot be reversed in a python session**!
+~~**currently cannot be reversed in a python session**~~ now we can safely remove our hook! 
+
+If you want to do safely removing the prototext hook (pls don't, pls), use 
+
+```python
+ProtoText.unhook()
+```
+
+~~The unhook part is still very buggy. We are sorry for that.~~ 
+(You didn't see anything in the line above.)
 
 #### Dict-Like Operations
  
 We wrap all the protobuf message with dict-like indexing and updating, i.e.
  
 assume `person_obj` to be some protobuf message
+
  ```python
  print person_obj['name']       # print out the person_obj.name 
  person_obj['name'] = 'David'   # set the attribute 'name' to 'David'
@@ -70,7 +87,7 @@ person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")] # 
 ```
 
 ~~However, at present, the implementation for the list assignment feature is ugly, unsafe and inefficient.~~
-*You didn't see anything in the above line.* 
+*Again you didn't see anything in the line above.* 
  
 #### Text Method
  

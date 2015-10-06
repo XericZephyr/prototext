@@ -6,7 +6,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 """
-    TODO: Add ModuleHookHelper and remove the deprecated code
+    TODO:
+        - Add ModuleHookHelper and remove the deprecated code
+        - Append the old function pointer to the original message object.
+        - Try to avoid multiple hook at the same time.
 """
 
 
