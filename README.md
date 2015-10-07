@@ -12,11 +12,11 @@ first.**
 
 ### Installation 
 
-The newest release version is `0.3.0` even though we have some unstable development version ahead of that. 
+The newest release version is `0.3.3` albeit we have some unstable development version ahead of that. 
 To install the package, simply use the `pip` manager:
 
 ```bash
-pip install https://github.com/XericZephyr/prototext/archive/v0.3.0.tar.gz
+pip install https://github.com/XericZephyr/prototext/archive/v0.3.3.tar.gz
 ```
 
 We will publish this module to PyPI as soon as we consider this module as stable. 
@@ -38,11 +38,11 @@ You don't need to anything after that. The hack will be completed automatically 
 If you want to do safely removing the prototext hook (pls don't, pls), use 
 
 ```python
-ProtoText.unhook()
+ProtoText.prototext_unhook()
 ```
 
 ~~The unhook part is still very buggy. We are sorry for that.~~ 
-(You didn't see anything in the line above.)
+(We've fixed these bugs. It's safe now. :love_letter: )
 
 #### Dict-Like Operations
  

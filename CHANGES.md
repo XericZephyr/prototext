@@ -1,4 +1,8 @@
 # What's new?
+ 
+ * Version 0.3.3
+    - Swirl to a stabilized hook engine adopted by 0.3.0
+    - Unhook is much safer than v0.3.2
 
  * Version 0.3.2
     - Improved hook engine. Now it can do safely unhook.
