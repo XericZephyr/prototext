@@ -16,10 +16,11 @@ The newest release version is `0.3.3` albeit we have some unstable development v
 To install the package, simply use the `pip` manager:
 
 ```bash
-pip install https://github.com/XericZephyr/prototext/archive/v0.3.3.tar.gz
+pip install ProtoText
 ```
 
-We will publish this module to PyPI as soon as we consider this module as stable. 
+~~We will publish this module to PyPI as soon as we consider this module as stable.~~ 
+We've already publish it to the PyPI server so that you can now directly use `pip` manager to install it! :shipit: 
 
 ### Usage 
 
@@ -76,7 +77,7 @@ person_obj['phone'] = [{'number': '4567'}, Person.PhoneNumber(number="1234")] # 
 #### Text Method
  
  The protobuf package doesn't provide the easy-to-use instance methods to **parse from** and 
-  **serialize to** text-format prototxt files. For an instance, check 
+  **serialize to** text-format prototxt files. For an instance of prototxt file, check 
   [david.prototxt](https://raw.githubusercontent.com/XericZephyr/prototext/master/tests/david.prototxt).
   
  We append a pair of text-format method to the protobuf objects, which are 
