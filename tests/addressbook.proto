@@ -20,5 +20,6 @@ message Person {
 }
 
 message AddressBook {
-  repeated Person person = 1;
+    optional Person manager = 1;
+    repeated Person person = 2;
 }

@@ -41,7 +41,7 @@ class MessageWrapper(Message):
         elif isinstance(value, dict):
             # set singular message field
             del self[key]
-            self.update(value)
+            self[key].update(value)
         else:
             setattr(self, key, value)
 

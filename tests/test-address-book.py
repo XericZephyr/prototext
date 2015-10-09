@@ -64,3 +64,15 @@ class TestProtoText(unittest.TestCase):
 
         self.assertEqual(person_obj['name'], 'Brown')
         self.assertEqual(person_obj['id'], 15)
+
+    def test_dict_singular_message_field(self):
+        adr_book = AddressBook()
+        adr_book.update(
+            {
+                'manager': {
+                    'name': 'Zhongxing',
+                    'id': 16
+                }
+            }
+        )
+        self.assertEqual(adr_book['manager']['name'], 'Zhongxing')
