@@ -2,7 +2,7 @@
  
  * Version 0.3.4
     - Fix a bug in setting singular message field 
-    
+    - More test cases are added.
  
  * Version 0.3.3
     - Swirl to a stabilized hook engine adopted by 0.3.0
