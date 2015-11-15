@@ -12,7 +12,7 @@ first.**
 
 ### Installation 
 
-The newest release version is `0.3.3` albeit we have some unstable development version ahead of that. 
+The newest release version is `0.3.5` albeit we have some unstable development version ahead of that. 
 To install the package, simply use the `pip` manager:
 
 ```bash
